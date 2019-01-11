@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  get "users/new" => "users#new"
-  post "users/create" => "users#create"
+  resources :users, except: [:index]
 
   get "/" => "home#top"
 
