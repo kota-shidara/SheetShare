@@ -20,6 +20,10 @@ ul {
     margin: 0;
 }
 
+.page-heading {
+    margin-top: 80px;
+}
+
 // ヘッダー===================
 header {
     background-color: black;
@@ -61,9 +65,4 @@ header {
 .header-logo:hover,.header-list a:hover {
     color: #bfbfbf;
     transition: all 0.5s;
-}
-
-// ホームページ
-.home-heading {
-    margin-top: 80px;
 }
