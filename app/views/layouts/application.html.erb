@@ -16,16 +16,21 @@
         </a>
         <div class="header-list">
           <ul>
-            <li>
-              <a href="/users/new">
-                新規登録
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                ログイン
-              </a>
-            </li>
+            <% if @current_user %>
+              <li>
+                <%= link_to(@current_user.name, "/users/#{@current_user.id}") %>
+              </li>
+              <li>
+                <%= link_to("ログアウト", "/logout", {method: :post}) %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to("新規登録", "/users/new") %>
+              </li>
+              <li>
+                <%= link_to("ログイン", "/login") %>
+              </li>
+            <% end %>
           </ul>
         </div>
       </div>

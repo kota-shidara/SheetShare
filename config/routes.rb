@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get "/login" => "users#login_form"
+  post "/login" => "users#login"
   resources :users, except: [:index]
 
   get "/" => "home#top"
