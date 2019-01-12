@@ -2,4 +2,4 @@
 <h2><%= @current_user.name %></h2>
 <p>メールアドレス</p>
 <p><%= @current_user.email %></p>
-<%= link_to("編集", "/users/#{@current_user.id}/edit") %>
+<%= link_to("編集", edit_user_path(@current_user)) %>
