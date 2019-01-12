@@ -15,4 +15,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # ログインしているユーザーのアクセスを拒否
+  def forbid_login_user
+    if @current_user
+      flash[:notice] = "すでにログインしています"
+      redirect_to("/")
+    end
+  end
+
 end
