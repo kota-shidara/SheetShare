@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :ensure_correct_user, {only: [:show, :edit, :update]}
+
   def new
     @user = User.new
   end
@@ -52,6 +54,14 @@ class UsersController < ApplicationController
       redirect_to("/")
     else
       render("users/edit")
+    end
+  end
+
+  # ログインユーザーとアクセスしたURLのユーザーが等しくなければアクセス拒否
+  def ensure_correct_user
+    if @current_user.id != params[:id].to_i
+      flash[:notice] = "権限がありません"
+      redirect_to("/")
     end
   end
 
