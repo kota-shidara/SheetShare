@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  # ログインしていないユーザーのアクセスを拒否
+  before_action :authenticate_user, {only: [:show, :edit, :update]}
+  # ログインユーザーとアクセスしたURLに該当するユーザーが等しくなければアクセス拒否
   before_action :ensure_correct_user, {only: [:show, :edit, :update]}
 
   def new
@@ -57,7 +60,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # ログインユーザーとアクセスしたURLのユーザーが等しくなければアクセス拒否
+  # ログインユーザーとアクセスしたURLに該当するユーザーが等しくなければアクセス拒否
   def ensure_correct_user
     if @current_user.id != params[:id].to_i
       flash[:notice] = "権限がありません"
