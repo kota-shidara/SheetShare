@@ -6,10 +6,15 @@
 	</div>
 <% end %>
 
-<%= form_tag("/users/#{@current_user.id}", {method: :patch}) do %>
+<%= form_for @user, url: user_path(@user) do |f| %>
 	<p>ユーザー名</p>
-	<input name="name"	value="<%= @user.name %>" >
+	<p>
+		<%= f.text_field :name %>
+	</p>
 	<p>メールアドレス</p>
-	<input name="email" value="<%= @user.email %>">
-	<input type="submit" value="保存">
+	<p>
+		<%= f.text_field :email %>
+	</p>
+		<%= f.submit "保存" %>
+	</p>
 <% end %>
