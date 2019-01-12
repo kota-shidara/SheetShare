@@ -6,12 +6,20 @@
 	</div>
 <% end %>
 
-<%= form_tag("/users") do %>
+<%= form_for :user, url: users_path do |f| %>
 	<p>ユーザー名</p>
-	<input name="name" value="<%= @user.name %>">
+	<p>
+		<%= f.text_field :name %>
+	</p>
 	<p>メールアドレス</p>
-	<input name="email" value="<%= @user.email %>">
+	<p>
+		<%= f.text_field :email %>
+	</p>
 	<p>パスワード</p>
-	<input type="password" name="password" value="<%= @user.password %>">
-	<input type="submit" value="新規登録">
+	<p>
+		<%= f.password_field :password %>
+	</p>
+	<p>
+		<%= f.submit "新規登録" %>
+	</p>
 <% end %>
