@@ -1,2 +1,21 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<h1 class="page-heading">ログイン</h1>
+
+<% if @error_message %>
+	<div class="form-error">
+		<%= @error_message %>
+	</div>
+<% end %>
+
+<%= form_for :session, url: login_path do |f| %>
+	<p>メールアドレス</p>
+	<p>
+		<%= f.text_field :email %>
+	</p>
+	<p>パスワード</p>
+	<p>
+		<%= f.password_field :password %>
+	</p>
+	<p>
+		<%= f.submit "ログイン" %>
+	</p>
+<% end %>
