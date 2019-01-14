@@ -6,10 +6,16 @@
 	</div>
 <% end %>
 
-<%= form_tag("/login") do %>
+<%= form_for :session, url: login_path do |f| %>
 	<p>メールアドレス</p>
-	<input name="email"	value="<%= @email %>" >
+	<p>
+		<%= f.text_field :email %>
+	</p>
 	<p>パスワード</p>
-	<input type="password" name="password" value="<%= @password %>">
-	<input type="submit" value="ログイン">
+	<p>
+		<%= f.password_field :password %>
+	</p>
+	<p>
+		<%= f.submit "ログイン" %>
+	</p>
 <% end %>
