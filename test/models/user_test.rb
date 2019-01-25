@@ -45,8 +45,13 @@ class UserTest < ActiveSupport::TestCase
     assert_equal mixed_case_email.downcase, @user.reload.email
   end
 
+  # まだemailのフォーマットのテストはしていない
+
   test "password should be present" do
     @user.password = @user.password_confirmation = "  "
     assert_not @user.valid?
   end
+
+  # まだpasswordの文字数による制限はしていない
+  
 end
