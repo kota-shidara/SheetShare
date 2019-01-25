@@ -1,0 +1,26 @@
+<header>
+  <div class="header-container">
+    <a href="/" class="header-logo">
+      SheetShare
+    </a>
+    <div class="header-list">
+      <ul>
+        <% if logged_in? %>
+          <li>
+            <%= link_to(@current_user.name, user_path(@current_user)) %>
+          </li>
+          <li>
+            <%= link_to("ログアウト", logout_path , {method: :delete}) %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to("新規登録", new_user_path) %>
+          </li>
+          <li>
+            <%= link_to("ログイン", login_path) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</header>
