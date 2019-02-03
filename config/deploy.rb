@@ -10,7 +10,7 @@ set :branch, "develop"
 
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, "/var/www/my_app_name"
-set :deploy_to, '/var/www/SheetShare'
+set :deploy_to, '/var/www/rails/SheetShare'
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -40,7 +40,7 @@ set :deploy_to, '/var/www/SheetShare'
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
-set :linked_files, fetch(:linked_files, []).push('config/settings.yml')
+#set :linked_files, fetch(:linked_files, []).push('config/settings.yml')
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
 set :keep_releases, 5
 set :rbenv_ruby, '2.5.1'

@@ -7,9 +7,9 @@
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
-
+set :stage, :production
 server '54.65.25.160', user: 'kota', roles: %w{app db web}
-set :ssh_options, keys: "~/.ssh/fitst_aws_rsa"
+set :ssh_options, keys: "~/.ssh/SheetShare_key_rsa"
 
 # role-based syntax
 # ==================
