@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: sheetshare_production
-  username: sheetshare
   password: <%= ENV['SHEETSHARE_DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
