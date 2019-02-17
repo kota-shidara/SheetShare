@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190210044917) do
+ActiveRecord::Schema.define(version: 20190217141218) do
+
+  create_table "sales", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "seller_user_id"
+    t.text     "seller_user_description", limit: 65535
+    t.integer  "train_id"
+    t.integer  "get_on_station_id"
+    t.integer  "get_off_station_id"
+    t.integer  "car_number"
+    t.integer  "sheet_type"
+    t.integer  "sheet_number"
+    t.integer  "buyer_user_id"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.integer  "confirmation"
+  end
 
   create_table "station_trains", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "train_id"
