@@ -1,0 +1,34 @@
+<h1 class="page-heading">情報を入力</h1>
+
+<% @sale.errors.full_messages.each do |message| %>
+	<div class="form-error">
+		<%= message %>
+	</div>
+<% end %>
+
+<%= "乗車した路線名：#{@sale.train_line_name}" %>
+<%= "乗車駅：#{@sale.get_on_station_name}" %>
+<%= "降車駅：#{@sale.get_off_station_name}" %>
+<%= form_for(@sale, url: {action: "update"}) do |f| %>
+  <div>
+  <%= f.label :train_id, "#{@sale.get_on_station_name}駅で乗車した#{@sale.direction}電車" %>
+  <%= f.select :train_id, @station_trains.map {|t| ["#{t.departure_time.strftime('%H:%M')}発　#{@possible_trains.find(t.train_id).description}", t.train_id]}, prompt: "選択してください" %>
+  </div>
+  <div>
+  <%= f.label :car_number, "乗車した車両の号車番号" %>
+  <%= f.select :car_number, {"1号車": 1, "2号車": 2, "3号車": 3, "4号車": 4, "5号車": 5, "6号車": 6, "7号車": 7, "8号車": 8, "9号車": 9, "10号車": 10, "11号車": 11, "12号車": 12, "13号車": 13, "14号車": 14, "15号車": 15}, prompt: "選択してください" %>
+  </div>
+  <div>
+  <%= f.label :sheet_type, "座席配置のタイプ" %>
+  <%= f.select :sheet_type, {"タイプ1": 1, "タイプ2": 2, "タイプ3": 3}, prompt: "選択してください" %>
+  </div>
+  <div>
+  <%= f.label :sheet_number, "選択した座席配置のタイプにおける座席番号" %>
+  <%= f.text_field :sheet_number, placeholder: "入力してください" %>
+  </div>
+  <div>
+    <%= f.label :seller_user_description, "購入者があなたを見つけやすいように見た目の情報を入れましょう！" %>
+    <%= f.text_field :seller_user_description, placeholder: "洋服の色は？バッグの色は？" %>
+  </div>
+  <%= f.submit "入力情報確認へ"%>
+<% end %>

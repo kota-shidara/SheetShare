@@ -1,0 +1,31 @@
+<h1 class="page-heading">入力した情報を確認する</h1>
+
+<div>
+  <%= "路線名：#{@sale.train_line_name}" %>
+</div>
+<div>
+  <%= "乗車駅：#{@sale.get_on_station_name}" %>
+</div>
+<div>
+  <%= "降車駅：#{@sale.get_off_station_name}" %>
+</div>
+<div>
+  <%= "乗車電車:#{@sale.get_on_station_name} #{@sale.get_on_station_departure_time.strftime('%H:%M')}発　#{@sale.description}" %>
+</div>
+<div>
+  <%= "乗車車両の号車番号：#{@sale.car_number}" %>
+</div>
+<div>
+  <%= "座席配置のタイプ：タイプ#{@sale.sheet_type}" %>
+</div>
+<div>
+  <%= "座った席番号：#{@sale.sheet_number}" %>
+</div>
+<div>
+  <%= "あなたの本日の見た目特徴：#{@sale.seller_user_description}" %>
+</div>
+<%= button_to("情報を編集する", root_path, method: "get") %>
+<%= form_for(@sale, url: {action: "confirm"}, method: "post") do |f| %>
+  <%= f.hidden_field :confirmation, value: 1 %>
+  <%= f.submit "確定して座席を売る"%>
+<% end %>

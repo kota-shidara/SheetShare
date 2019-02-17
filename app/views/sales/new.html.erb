@@ -1,0 +1,28 @@
+<h1 class="page-heading">路線・乗車駅・降車駅の情報を入力</h1>
+
+<% @sale.errors.full_messages.each do |message| %>
+	<div class="form-error">
+		<%= message %>
+	</div>
+<% end %>
+
+<% if @selected_train_line_id.blank? %>
+  <%= form_tag(new_sale_path, {method: "get"}) do %>
+    <label>路線名</label>
+    <%= select_tag 'selected_train_line_id', options_from_collection_for_select(@train_lines, :id, :name), prompt: "選択してください" %>
+    <input type="submit" value="次へ">
+  <% end %>
+<% else %>
+  <%= "選択された路線：#{@train_lines.find(@selected_train_line_id).name}" %>
+<% end %>
+
+<% if !@selected_train_line_id.blank? %>
+  <%= form_for(@sale, url: {action: 'create'}) do |f| %>
+    <input name="selected_train_line_id" class="hidden" value="<%= @selected_train_line_id %>" type="integer" >
+    <%= f.label :get_on_station_id, "乗車駅" %>
+    <%= f.collection_select :get_on_station_id, @stations, :id, :name, prompt: "選択してください" %>
+    <%= f.label :get_on_station_id, "降車駅" %>
+    <%= f.collection_select :get_off_station_id, @stations, :id, :name, prompt: "選択してください" %>
+    <%= f.submit "次へ"%>
+  <% end %>
+<% end %>
