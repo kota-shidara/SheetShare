@@ -5,11 +5,6 @@ class SalesController < ApplicationController
     @train_lines = TrainLine.all
     @selected_train_line_id = params[:selected_train_line_id]
     @stations = Station.where(train_line_id: @selected_train_line_id)
-    @get_on_station_id = params[:get_on_station_id]
-    @get_off_station_id = params[:get_off_station_id]
-    if @get_on_station_id
-      @get_on_station_name = Station.find_by(id: @get_on_station_id).name
-    end
   end
 
   def create

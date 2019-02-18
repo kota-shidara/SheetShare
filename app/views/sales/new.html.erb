@@ -1,9 +1,9 @@
 <h1 class="page-heading">路線・乗車駅・降車駅の情報を入力</h1>
 
 <% @sale.errors.full_messages.each do |message| %>
-	<div class="form-error">
-		<%= message %>
-	</div>
+  <div class="form-error">
+    <%= message %>
+  </div>
 <% end %>
 
 <% if @selected_train_line_id.blank? %>
