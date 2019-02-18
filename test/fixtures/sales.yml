@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  seller_user_id: 1
+  seller_user_description: MyText
+  train_id: 1
+  get_on_station_id: 1
+  get_off_station_id: 1
+  car_number: 1
+  sheet_type: 1
+  sheet_number: 1
+  buyer_user_id: 1
+
+two:
+  seller_user_id: 1
+  seller_user_description: MyText
+  train_id: 1
+  get_on_station_id: 1
+  get_off_station_id: 1
+  car_number: 1
+  sheet_type: 1
+  sheet_number: 1
+  buyer_user_id: 1

@@ -1,3 +1,4 @@
+<% provide(:title, "ログイン") %>
 <h1 class="page-heading">ログイン</h1>
 
 <% if @error_message %>
@@ -7,15 +8,19 @@
 <% end %>
 
 <%= form_for :session, url: login_path do |f| %>
-	<p>メールアドレス</p>
-	<p>
-		<%= f.text_field :email %>
-	</p>
-	<p>パスワード</p>
-	<p>
-		<%= f.password_field :password %>
-	</p>
-	<p>
-		<%= f.submit "ログイン" %>
-	</p>
+
+<div>
+	<%= f.label :email, "メールアドレス" %>
+	<%= f.text_field :email %>
+</div>
+
+<div>
+	<%= f.label :password, "パスワード" %>
+	<%= f.password_field :password %>
+</div>
+
+<div>
+	<%= f.submit "ログイン", class: "btn btn-primary" %>
+</div>
+
 <% end %>
