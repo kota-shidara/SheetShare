@@ -2,9 +2,22 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      sale: 売り情報
     attributes:
       user:
         name: ユーザー名
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード確認用
+      sale:
+        get_on_station_id: 乗車駅
+        get_off_station_id: 降車駅
+        train_id: 乗車電車
+        car_number: 乗車号車
+        sheet_type: 座席タイプ
+        sheet_number: 座席番号
+        transaction_number: 取引番号
+      sale/sale_status:
+        selling: 売出し中
+        matched: マッチング済み
+        finished: マッチング無し終了
