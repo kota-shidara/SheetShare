@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-    has_secure_password
+		has_secure_password
+
+		has_many :sales
 
 		validates :name, presence: true, length: {maximum: 50}
 		# まだ正しいフォーマットであるかの検証はしていない
