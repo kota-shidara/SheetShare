@@ -1,3 +1,4 @@
+<% provide(:title, "席を売る") %>
 <h1 class="page-heading">情報を入力</h1>
 
 <% @sale.errors.full_messages.each do |message| %>
@@ -6,12 +7,12 @@
 	</div>
 <% end %>
 
-<%= "乗車した路線名：#{@sale.train_line_name}" %>
-<%= "乗車駅：#{@sale.get_on_station_name}" %>
-<%= "降車駅：#{@sale.get_off_station_name}" %>
-<%= form_for(@sale, url: {action: "update"}) do |f| %>
+<%= "乗車した路線名：#{@sale.train_line.name}" %>
+<%= "乗車駅：#{@sale.get_on_station.name}" %>
+<%= "降車駅：#{@sale.get_off_station.name}" %>
+<%= form_for(@sale, url: {action: "append"}) do |f| %>
   <div>
-  <%= f.label :train_id, "#{@sale.get_on_station_name}駅で乗車した#{@sale.direction}電車" %>
+  <%= f.label :train_id, "#{@sale.get_on_station.name}駅で乗車した#{@sale.direction}電車" %>
   <%= f.select :train_id, @station_trains.map {|t| ["#{t.departure_time.strftime('%H:%M')}発　#{@possible_trains.find(t.train_id).description}", t.train_id]}, prompt: "選択してください" %>
   </div>
   <div>
@@ -30,5 +31,5 @@
     <%= f.label :seller_user_description, "購入者があなたを見つけやすいように見た目の情報を入れましょう！" %>
     <%= f.text_field :seller_user_description, placeholder: "洋服の色は？バッグの色は？" %>
   </div>
-  <%= f.submit "入力情報確認へ"%>
+  <%= f.submit "入力情報確認へ", class: "btn btn-primary" %>
 <% end %>

@@ -1,5 +1,7 @@
 class Sale < ApplicationRecord
 
+  belongs_to :train
+
   validates :seller_user_id,          presence: true
   validates :get_on_station_id,       presence: true
   validates :get_off_station_id,      presence: true
@@ -10,20 +12,18 @@ class Sale < ApplicationRecord
   validates :sheet_number,            presence: true, on: :update
   # validates :seller_user_description, allow_blank: true
 
-  def get_on_station_name
-    return Station.find(self.get_on_station_id).name
+  SALE_STATUS = [:selling, :matched, :finished].freeze
+
+  def get_on_station
+    return Station.find(self.get_on_station_id)
   end
 
-  def get_off_station_name
-    return Station.find(self.get_off_station_id).name
+  def get_off_station
+    return Station.find(self.get_off_station_id)
   end
 
-  def train_line_id
-    return Station.find(self.get_on_station_id).train_line_id
-  end
-
-  def train_line_name
-    return TrainLine.find(self.train_line_id).name
+  def train_line
+    TrainLine.find(Station.find(self.get_on_station_id).train_line_id)
   end
 
   def direction
@@ -34,8 +34,31 @@ class Sale < ApplicationRecord
     end
   end
 
+  def is_matched?
+    self.buyer_user_id.present?
+  end
+
+  # 乗車時刻の時刻部分だけを取っているので直したい
+  def is_finished?
+    !self.created_at.today? || self.get_off_station_departure_time.hour < Time.now.hour
+  end
+
+  def sale_status
+    num = 0
+    if is_matched?
+      num = 1
+    elsif is_finished?
+      num = 2
+    end
+    SALE_STATUS[num]
+  end
+
   def get_on_station_departure_time
-    return StationTrain.find_by(train_id: self.train_id, station_id: self.get_on_station_id).departure_time
+    StationTrain.find_by(train_id: self.train_id, station_id: self.get_on_station_id).departure_time
+  end
+
+  def get_off_station_departure_time
+    StationTrain.find_by(train_id: self.train_id, station_id: self.get_off_station_id).departure_time
   end
 
   def description
