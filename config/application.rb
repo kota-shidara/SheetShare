@@ -15,5 +15,9 @@ module Sheetshare
 
     config.i18n.default_locale = :ja
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
+    # 表示時のタイムゾーンをJSTに設定
+    config.time_zone = 'Tokyo'
+    # DB保存時のタイムゾーンをJSTに設定
+    config.active_record.default_timezone = :local
   end
 end

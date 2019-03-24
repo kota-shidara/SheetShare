@@ -10,6 +10,9 @@
             <%= link_to(@current_user.name, user_path(@current_user)) %>
           </li>
           <li>
+            <%= link_to("自分の売り情報",sales_user_path(@current_user.id))%>
+          </li>
+          <li>
             <%= link_to("ログアウト", logout_path , {method: :delete}) %>
           </li>
         <% else %>

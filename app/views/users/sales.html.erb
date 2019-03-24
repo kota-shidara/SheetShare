@@ -1,0 +1,10 @@
+<% provide(:title, "自分の売り情報") %>
+<h1 class="page-heading">自分の売り情報</h1>
+
+<% @sales.each do |sale| %>
+  <div>
+    <%= "#{sale.created_at.strftime('%m/%d %a')} #{sale.train_line.name} #{sale.get_on_station.name}駅 #{sale.get_on_station_departure_time.strftime('%H:%M')}乗車 #{sale.train.description}" %>
+    <%= "ステータス:#{Sale.human_attribute_name("sale/sale_status.#{sale.sale_status}")}" %>
+    <%= link_to "詳細", sale_path(sale.id) %>
+  </div>
+<% end %>

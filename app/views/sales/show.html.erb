@@ -1,0 +1,39 @@
+<% provide(:title, "売り情報詳細") %>
+<h1 class="page-heading">席売り詳細情報</h1>
+
+<% if @sale.seller_user_id == current_user.id%>
+  <div style="font-size: 24px;">
+    <%= "取引番号（座席の買い手に、こちらの番号をお伝え下さい。）：#{@sale.transaction_number}" %>
+  </div>
+<% end %>
+<div>
+  <%= "路線名：#{@sale.train_line.name}" %>
+</div>
+<div>
+  <%= "乗車駅：#{@sale.get_on_station.name}" %>
+</div>
+<div>
+  <%= "降車駅：#{@sale.get_off_station.name}" %>
+</div>
+<div>
+  <%= "乗車電車:#{@sale.get_on_station.name} #{@sale.get_on_station_departure_time.strftime('%H:%M')}発　#{@sale.description}" %>
+</div>
+<div>
+  <%= "乗車車両の号車番号：#{@sale.car_number}" %>
+</div>
+<div>
+  <%= "座席配置のタイプ：タイプ#{@sale.sheet_type}" %>
+</div>
+<div>
+  <%= "座った席番号：#{@sale.sheet_number}" %>
+</div>
+<div>
+  <%= "売り主の見た目特徴：#{@sale.seller_user_description}" %>
+</div>
+
+<% if @sale.seller_user_id == current_user.id%>
+  <%= link_to("編集", edit_sale_path(@sale.id), class: "btn btn-primary") %>
+  <%= link_to("取り消す", sale_path(@sale.id), method: "delete", class: "btn btn-primary", data: {confirm: "本当に削除しますか？"}) %>
+<% else %>
+  <%= link_to("購入する", "#", class: "btn btn-primary" ) %>
+<% end %>

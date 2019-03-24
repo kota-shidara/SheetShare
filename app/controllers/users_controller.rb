@@ -39,6 +39,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def sales
+    @sales = Sale.where(seller_user_id: current_user.id).order(created_at: 'DESC')
+  end
+
   # ログインユーザーとアクセスしたURLに該当するユーザーが等しくなければアクセス拒否
   def ensure_correct_user
     @user = User.find(params[:id])
