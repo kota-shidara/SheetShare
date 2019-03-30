@@ -1,0 +1,17 @@
+<% provide(:title, "席を買う") %>
+<h1 class="page-heading">路線・駅名で検索</h1>
+
+<% if params.dig(:q, :name_cont).blank? %>
+  <%= search_form_for @q, url: purchases_step1_path do |f| %>
+    <%= f.label :name_cont, "路線名" %>
+    <%= f.search_field :name_cont, prompt: "路線名を入力してください" %>
+    <%= f.submit %>
+  <% end %>
+<% end %>
+
+<% if params.dig(:q, :name_cont).present? %>
+  <%= form_tag %>
+  <% @results.each do |trainline| %>
+    <%= trainline.name %>
+  <% end %>
+<% end %>

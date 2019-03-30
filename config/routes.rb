@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
 
-
   get "/login" => "sessions#new"
   post "/login" => "sessions#create"
   delete "/logout" => "sessions#delete"
+
   resources :users, only: [:show, :new, :create, :edit, :update] do
     member do
       get 'sales'
     end
   end
+
   resources :sales, only: [:show, :new, :create, :edit, :update, :destroy] do
     member do
       get 'step'
@@ -17,6 +18,10 @@ Rails.application.routes.draw do
       post 'confirm'
       get 'complete'
     end
+  end
+
+  namespace :purchases do
+    get 'step1'
   end
 
   root "home#top"
