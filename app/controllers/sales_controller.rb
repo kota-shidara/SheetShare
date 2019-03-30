@@ -45,7 +45,7 @@ class SalesController < ApplicationController
   def check
     @sale = Sale.find(params[:id])
     if @sale.transaction_number.nil?
-      @transaction_number = format("%04d", SecureRandom.random_number(10**4))
+      @transaction_number = (rand(1..9).to_s + format("%03d", SecureRandom.random_number(10**3)).to_s).to_i
     else
       @transaction_number = @sale.transaction_number
     end
