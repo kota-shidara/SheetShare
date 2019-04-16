@@ -35,5 +35,9 @@
   <%= link_to("編集", edit_sale_path(@sale.id), class: "btn btn-primary") %>
   <%= link_to("取り消す", sale_path(@sale.id), method: "delete", class: "btn btn-primary", data: {confirm: "本当に削除しますか？"}) %>
 <% else %>
-  <%= link_to("購入する", "#", class: "btn btn-primary" ) %>
+  <%= form_tag confirm_purchases_path do %>
+    <%= text_field_tag "purchase[transaction_number]" %>
+    <%= hidden_field_tag "sale_id", @sale.id %>
+    <%= submit_tag "購入する", class: "btn btn-primary" %>
+  <% end %>
 <% end %>

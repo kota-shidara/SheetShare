@@ -7,7 +7,7 @@
 	</div>
 <% end %>
 
-<%= form_for @user, url: {action => 'update'} do |f| %>
+<%= form_for @user, url: "update" do |f| %>
 	<p>ユーザー名</p>
 	<p>
 		<%= f.text_field :name %>
