@@ -12,6 +12,8 @@ class Sale < ApplicationRecord
   validates :sheet_number,            presence: true, on: :update
   # validates :seller_user_description, allow_blank: true
 
+  # get_on_stationとget_off_stationが同じものであったときのvalidationをまだかけてい
+
   SALE_STATUS = [:selling, :matched, :finished].freeze
 
   def get_on_station
@@ -26,7 +28,7 @@ class Sale < ApplicationRecord
     TrainLine.find(Station.find(self.get_on_station_id).train_line_id)
   end
 
-  def direction
+  def direction_by_get_on_and_off_station
     if self.get_on_station_id < self.get_off_station_id
       return "上り"
     else
