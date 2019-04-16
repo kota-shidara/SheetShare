@@ -12,7 +12,7 @@
 <%= "降車駅：#{@sale.get_off_station.name}" %>
 <%= form_for(@sale, url: {action: "append"}) do |f| %>
   <div>
-  <%= f.label :train_id, "#{@sale.get_on_station.name}駅で乗車した#{@sale.direction}電車" %>
+  <%= f.label :train_id, "#{@sale.get_on_station.name}駅で乗車した#{@sale.direction_by_get_on_and_off_station}電車" %>
   <%= f.select :train_id, @station_trains.map {|t| ["#{t.departure_time.strftime('%H:%M')}発　#{@possible_trains.find(t.train_id).description}", t.train_id]}, prompt: "選択してください" %>
   </div>
   <div>

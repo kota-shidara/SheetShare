@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   # ログインしていないユーザーのアクセスを拒否
   before_action :forbid_unlogged_in_user, {only: [:show, :edit, :update]}
   # ログインユーザーとアクセスしたURLに該当するユーザーが等しくなければアクセス拒否
-  before_action :ensure_correct_user, {only: [:show, :edit, :update]}
+  before_action :ensure_correct_user, {only: [:show, :edit, :update, :sales]}
   # ログインしているユーザーのアクセスを拒否
   before_action :forbid_logged_in_user, {only: [:new, :create]}
 

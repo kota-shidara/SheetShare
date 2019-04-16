@@ -1,0 +1,12 @@
+<% provide(:title, "席を買う") %>
+<h1 class="page-heading">現在、近い駅を選択</h1>
+
+<% @stations.each do |station| %>
+  <%= form_tag purchases_path, method: :get do %>
+    <%= station.name %>
+    <%= hidden_field_tag "direction", @direction %>
+    <%= hidden_field_tag "train_line_id",@train_line.id %>
+    <%= hidden_field_tag "station_id", station.id %>
+    <%= submit_tag("確定する") %>
+  <% end %>
+<% end %>
