@@ -1,0 +1,13 @@
+<% provide(:title, "席を買う") %>
+<h1 class="page-heading">売り情報を一覧</h1>
+
+<% if @sales.empty? %>
+  <p>まだ売り情報はありません</p>
+<% end %>
+<% @sales.each do |sale| %>
+<div>
+<%= "#{sale.get_on_station.name}駅乗車 #{sale.get_off_station.name}降車予定" %>
+<%= "#{@near_station.name}駅に到着する時間：#{time_at_near_station(sale, @near_station)}" %>
+<%= link_to "詳細", sale_path(sale.id) %>
+</div>
+<% end %>

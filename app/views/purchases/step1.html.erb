@@ -1,8 +1,8 @@
 <% provide(:title, "席を買う") %>
-<h1 class="page-heading">路線・駅名で検索</h1>
+<h1 class="page-heading">路線を確定</h1>
 
 <% if params.dig(:q, :name_cont).blank? %>
-  <%= search_form_for @q, url: purchases_step1_path do |f| %>
+  <%= search_form_for @q, url: step1_purchases_path do |f| %>
     <%= f.label :name_cont, "路線名" %>
     <%= f.search_field :name_cont, prompt: "路線名を入力してください" %>
     <%= f.submit %>
@@ -10,8 +10,13 @@
 <% end %>
 
 <% if params.dig(:q, :name_cont).present? %>
-  <%= form_tag %>
   <% @results.each do |trainline| %>
-    <%= trainline.name %>
+    <%= form_tag "step2", method: :get do %>
+      <%= trainline.name %>
+      <%= select_tag "direction", options_for_select(["上り", "下り"]), prompt: "方面を選択" %>
+      <%= hidden_field_tag "q[name_cont]", params[:q][:name_cont] %>
+      <%= hidden_field_tag "train_line_id", trainline.id %>
+      <%= submit_tag("確定する") %>
+    <% end %>
   <% end %>
 <% end %>
