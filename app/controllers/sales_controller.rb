@@ -1,5 +1,5 @@
 class SalesController < ApplicationController
-
+  before_action :forbid_unlogged_in_user
   before_action :ensure_seller_user, {only: [:step, :append, :check, :confirm, :edit, :update, :destroy]}
   before_action :forbid_confirmed_sale, {only: [:step, :append, :check, :confirm]}
   require 'securerandom'
@@ -27,7 +27,7 @@ class SalesController < ApplicationController
   def step
     @sale            = Sale.find(params[:id])
     # データベースが大きくなったときに全てのTrainのデータから探さないように、可能性があるものだけ選別
-    @possible_trains = Train.where(train_line_id: @sale.train_line.id)
+    @possible_trains = Train.where(train_line_id: @sale.train_line.id, direction: @sale.direction_by_get_on_and_off_station)
     @station_trains  = StationTrain.where(station_id: @sale.get_on_station_id, train_id: @possible_trains.ids)
   end
 
