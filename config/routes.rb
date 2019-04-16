@@ -20,8 +20,13 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :purchases do
-    get 'step1'
+  resources :purchases, only: [:index] do
+    collection do
+      get 'step1'
+      get 'step2'
+      post 'confirm'
+      get 'thanks'
+    end
   end
 
   root "home#top"
